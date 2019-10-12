@@ -6,7 +6,8 @@ plugins {
 }
 
 project.sourceCompatibility = '1.8'
-project.archivesBaseName = 'spring-security-extension'
+project.group = 'com.hectorlopezfernandez.pebble'
+project.name = 'spring-security-extension'
 project.version = '2.0.0-SNAPSHOT'
 
 repositories {
