@@ -1,6 +1,8 @@
 plugins {
   id 'java'
   id 'eclipse'
+  id 'maven'
+  id 'signing'
 }
 
 project.sourceCompatibility = '1.8'
@@ -39,4 +41,46 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
   archives sourcesJar
   archives javadocJar
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots') {
+        authentication(userName: mavenUser, password: mavenPassword)
+      }
+      repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2') {
+        authentication(userName: mavenUser, password: mavenPassword)
+      }
+      pom.project {
+        name 'Spring Security extension for Pebble Template Engine'
+        description "Pebble Template Engine extension supporting the functionality of Spring Security's jsp tags"
+        url 'https://github.com/hectorlf/pebble-joda-time-extension'
+        licenses {
+          license {
+            name "The MIT License (MIT)"
+            url 'https://opensource.org/licenses/MIT'
+          }
+        }
+        scm {
+          url 'https://github.com/hectorlf/pebble-spring-security-extension'
+        }
+        developers {
+          developer {
+            name 'Hector Lopez'
+            email 'postmaster@hectorlopezfernandez.com'
+            url 'https://www.hectorlopezfernandez.com'
+          }
+        }
+      }
+      beforeDeployment {
+        MavenDeployment deployment -> signing.signPom(deployment)
+      }
+    }
+  }
+}
+
+signing {
+   required { gradle.taskGraph.hasTask("uploadArchives") }
+   sign configurations.archives
 }
