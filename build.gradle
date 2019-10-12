@@ -1,49 +1,42 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-
-repositories {
-   mavenCentral()
+plugins {
+  id 'java'
+  id 'eclipse'
 }
 
-project.sourceCompatibility = '1.7'
+project.sourceCompatibility = '1.8'
 project.archivesBaseName = 'spring-security-extension'
 project.version = '2.0.0-SNAPSHOT'
 
+repositories {
+  mavenCentral()
+}
+
 dependencies {
-   compile 'javax.servlet:javax.servlet-api:3.1.0'
-   compile 'org.springframework:spring-web:4.3.5.RELEASE'
-   compile 'org.springframework.security:spring-security-web:4.1.4.RELEASE'
-   compile 'com.mitchellbosecke:pebble:2.3.0'
-   compile 'com.mitchellbosecke:pebble-spring4:2.3.0'
-   
-   testCompile 'junit:junit:4.12'
-   testCompile 'org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE'
-   testCompile 'org.springframework.boot:spring-boot-starter-security:1.4.3.RELEASE'
-   testCompile 'org.springframework.boot:spring-boot-starter-test:1.4.3.RELEASE'
-   testCompile 'org.springframework.security:spring-security-test:4.1.4.RELEASE'
-   testCompile 'com.mitchellbosecke:pebble-spring-boot-starter:2.3.0'
+  implementation 'javax.servlet:javax.servlet-api:3.1.0'
+  implementation 'org.springframework:spring-web:4.3.5.RELEASE'
+  implementation 'org.springframework.security:spring-security-web:4.1.4.RELEASE'
+  implementation 'com.mitchellbosecke:pebble:2.3.0'
+  implementation 'com.mitchellbosecke:pebble-spring4:2.3.0'
+
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE'
+  testImplementation 'org.springframework.boot:spring-boot-starter-security:1.4.3.RELEASE'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test:1.4.3.RELEASE'
+  testImplementation 'org.springframework.security:spring-security-test:4.1.4.RELEASE'
+  testImplementation 'com.mitchellbosecke:pebble-spring-boot-starter:2.3.0'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-   classifier = 'sources'
-   from sourceSets.main.allSource
+  classifier = 'sources'
+  from sourceSets.main.allSource
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-   classifier = 'javadoc'
-   from javadoc.destinationDir
+  classifier = 'javadoc'
+  from javadoc.destinationDir
 }
 
 artifacts {
-   archives sourcesJar
-   archives javadocJar
-}
-
-
-
-
-// Gradle wrapper task
-// Only used when in need to reinstall the wrapper
-task wrapper(type: Wrapper) {
-   gradleVersion = '3.2.1'
+  archives sourcesJar
+  archives javadocJar
 }
