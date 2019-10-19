@@ -12,8 +12,8 @@ import com.mitchellbosecke.pebble.extension.NodeVisitor;
 import com.mitchellbosecke.pebble.node.AbstractRenderableNode;
 import com.mitchellbosecke.pebble.node.BodyNode;
 import com.mitchellbosecke.pebble.node.expression.Expression;
-import com.mitchellbosecke.pebble.spring4.PebbleView;
-import com.mitchellbosecke.pebble.template.EvaluationContext;
+import com.mitchellbosecke.pebble.spring.PebbleView;
+import com.mitchellbosecke.pebble.template.EvaluationContextImpl;
 import com.mitchellbosecke.pebble.template.PebbleTemplateImpl;
 import com.mitchellbosecke.pebble.template.ScopeChain;
 
@@ -35,7 +35,7 @@ public class AuthorizeUrlNode extends AbstractRenderableNode {
     }
 
     @Override
-    public void render(PebbleTemplateImpl self, Writer writer, EvaluationContext context) throws PebbleException, IOException {
+    public void render(PebbleTemplateImpl self, Writer writer, EvaluationContextImpl context) throws PebbleException, IOException {
     	// decide if main body should be rendered
     	boolean renderMainBody = false;
     	if (SecurityContextHolder.getContext() != null) {

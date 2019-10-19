@@ -7,7 +7,7 @@ plugins {
 
 project.sourceCompatibility = '1.8'
 project.group = 'com.hectorlopezfernandez.pebble'
-project.name = 'spring-security-extension'
+project.archivesBaseName = 'spring-security-extension'
 project.version = '2.0.0-SNAPSHOT'
 
 repositories {
@@ -16,17 +16,17 @@ repositories {
 
 dependencies {
   implementation 'javax.servlet:javax.servlet-api:3.1.0'
-  implementation 'org.springframework:spring-web:4.3.5.RELEASE'
-  implementation 'org.springframework.security:spring-security-web:4.1.4.RELEASE'
-  implementation 'com.mitchellbosecke:pebble:2.3.0'
-  implementation 'com.mitchellbosecke:pebble-spring4:2.3.0'
+  implementation 'org.springframework:spring-web:5.1.10.RELEASE'
+  implementation 'org.springframework.security:spring-security-web:5.1.6.RELEASE'
+  implementation 'io.pebbletemplates:pebble:3.1.0'
+  implementation 'io.pebbletemplates:pebble-spring5:3.1.0'
 
   testImplementation 'junit:junit:4.12'
-  testImplementation 'org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE'
-  testImplementation 'org.springframework.boot:spring-boot-starter-security:1.4.3.RELEASE'
-  testImplementation 'org.springframework.boot:spring-boot-starter-test:1.4.3.RELEASE'
-  testImplementation 'org.springframework.security:spring-security-test:4.1.4.RELEASE'
-  testImplementation 'com.mitchellbosecke:pebble-spring-boot-starter:2.3.0'
+  testImplementation 'org.springframework.boot:spring-boot-starter-web:2.1.9.RELEASE'
+  testImplementation 'org.springframework.boot:spring-boot-starter-security:2.1.9.RELEASE'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.9.RELEASE'
+  testImplementation 'org.springframework.security:spring-security-test:5.1.6.RELEASE'
+  testImplementation 'io.pebbletemplates:pebble-spring-boot-starter:3.1.0'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

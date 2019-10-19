@@ -8,9 +8,9 @@ import com.mitchellbosecke.pebble.node.RenderableNode;
 import com.mitchellbosecke.pebble.node.expression.Expression;
 import com.mitchellbosecke.pebble.parser.Parser;
 import com.mitchellbosecke.pebble.parser.StoppingCondition;
-import com.mitchellbosecke.pebble.tokenParser.AbstractTokenParser;
+import com.mitchellbosecke.pebble.tokenParser.TokenParser;
 
-public class AuthorizeTokenParser extends AbstractTokenParser {
+public class AuthorizeTokenParser implements TokenParser {
 
     private static final String START_TAG = "authorize";
     private static final String FORK_TAG = "else";

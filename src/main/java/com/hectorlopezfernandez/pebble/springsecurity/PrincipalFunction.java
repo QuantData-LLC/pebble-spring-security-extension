@@ -8,6 +8,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.mitchellbosecke.pebble.extension.Function;
+import com.mitchellbosecke.pebble.template.EvaluationContext;
+import com.mitchellbosecke.pebble.template.PebbleTemplate;
 
 public class PrincipalFunction implements Function {
 
@@ -20,7 +22,7 @@ public class PrincipalFunction implements Function {
     }
 
     @Override
-    public Object execute(Map<String, Object> args) {
+    public Object execute(Map<String, Object> args, PebbleTemplate self, EvaluationContext context, int lineNumber) {
     	if (SecurityContextHolder.getContext() == null 
     			|| !(SecurityContextHolder.getContext() instanceof SecurityContext) 
     			|| SecurityContextHolder.getContext().getAuthentication() == null) {
