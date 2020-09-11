@@ -21,5 +21,4 @@ public class TestController {
 	public String principal(ModelMap model) {
 		return "principal";
 	}
-
 }

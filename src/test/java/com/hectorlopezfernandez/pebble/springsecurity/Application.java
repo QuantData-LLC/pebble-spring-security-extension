@@ -1,15 +1,14 @@
 package com.hectorlopezfernandez.pebble.springsecurity;
 
+import com.mitchellbosecke.pebble.extension.Extension;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 
-import com.mitchellbosecke.pebble.extension.Extension;
-
-@SpringBootApplication(exclude={SecurityAutoConfiguration.class})
 @ServletComponentScan
+@SpringBootApplication(exclude={SecurityAutoConfiguration.class})
 public class Application {
 
     public static void main(String[] args) {
@@ -20,5 +19,4 @@ public class Application {
     public Extension springSecurityExtension() {
     	return new SpringSecurityExtension();
     }
-
 }

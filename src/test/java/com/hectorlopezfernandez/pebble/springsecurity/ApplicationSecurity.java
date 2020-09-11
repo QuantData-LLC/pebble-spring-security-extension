@@ -1,7 +1,5 @@
 package com.hectorlopezfernandez.pebble.springsecurity;
 
-import java.util.Properties;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import java.util.Properties;
 
 @Configuration
 @EnableWebSecurity
@@ -34,5 +34,4 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 		users.put("user","user,ROLE_USER,enabled");
 		return new InMemoryUserDetailsManager(users);
 	}
-
 }

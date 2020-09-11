@@ -13,8 +13,14 @@ import com.mitchellbosecke.pebble.tokenParser.TokenParser;
 public class AuthorizeTokenParser implements TokenParser {
 
     private static final String START_TAG = "authorize";
+
     private static final String FORK_TAG = "else";
+
     private static final String END_TAG = "endAuthorize";
+
+    private final StoppingCondition decideForFork = token -> token.test(Token.Type.NAME, FORK_TAG, END_TAG);
+
+    private final StoppingCondition decideForEnd = token -> token.test(Token.Type.NAME, END_TAG);
 
 	@Override
     public RenderableNode parse(Token token, Parser parser) throws ParserException {
@@ -46,23 +52,8 @@ public class AuthorizeTokenParser implements TokenParser {
         return new AuthorizeNode(lineNumber, securityExpression, body, elseBody);
     }
 
-    private StoppingCondition decideForFork = new StoppingCondition() {
-        @Override
-        public boolean evaluate(Token token) {
-            return token.test(Token.Type.NAME, FORK_TAG, END_TAG);
-        }
-    };
-
-    private StoppingCondition decideForEnd = new StoppingCondition() {
-        @Override
-        public boolean evaluate(Token token) {
-            return token.test(Token.Type.NAME, END_TAG);
-        }
-    };
-
     @Override
     public String getTag() {
         return START_TAG;
     }
-
 }

@@ -1,16 +1,16 @@
 # pebble-spring-security-extension
 
-Pebble Template Engine extension supporting Spring Security's jsp tags
+Pebble Template Engine extension supporting Spring Security's JSP tags.
 
-Add the dependency to your pom.xml:
+Add the dependency to your `pom.xml`:
 ```XML
 <dependency>
-	<groupId>com.hectorlopezfernandez.pebble</groupId>
-	<artifactId>spring-security-extension</artifactId>
+	<groupId>us.quantdata</groupId>
+	<artifactId>pebble-spring-security-extension</artifactId>
 	<version>${version}</version>
 </dependency>
 ```
-Or build.gradle:
+Or to your `build.gradle`:
 ```Gradle
-compile "com.hectorlopezfernandez.pebble:spring-security-extension:$version"
+compile "us.quantdata:pebble-spring-security-extension:$version"
 ```

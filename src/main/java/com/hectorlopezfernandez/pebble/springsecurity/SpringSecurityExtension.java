@@ -1,15 +1,11 @@
 package com.hectorlopezfernandez.pebble.springsecurity;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.mitchellbosecke.pebble.extension.AbstractExtension;
 import com.mitchellbosecke.pebble.extension.Filter;
 import com.mitchellbosecke.pebble.extension.Function;
 import com.mitchellbosecke.pebble.tokenParser.TokenParser;
+
+import java.util.*;
 
 public class SpringSecurityExtension extends AbstractExtension {
 	
@@ -32,5 +28,4 @@ public class SpringSecurityExtension extends AbstractExtension {
         parsers.add(new AuthorizeUrlTokenParser());
         return parsers;
     }
-
 }

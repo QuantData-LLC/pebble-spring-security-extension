@@ -13,23 +13,33 @@ import com.mitchellbosecke.pebble.tokenParser.TokenParser;
 public class AuthorizeUrlTokenParser implements TokenParser {
 
     private static final String START_TAG = "authorizeUrl";
+
     private static final String FORK_TAG = "else";
+
     private static final String END_TAG = "endAuthorizeUrl";
 
-	@Override
+    private final StoppingCondition decideForFork = token -> token.test(Token.Type.NAME, FORK_TAG, END_TAG);
+
+    private final StoppingCondition decideForEnd = token -> token.test(Token.Type.NAME, END_TAG);
+
+
+    @Override
     public RenderableNode parse(Token token, Parser parser) throws ParserException {
         TokenStream stream = parser.getStream();
         int lineNumber = token.getLineNumber();
 
         // parse the start token
         stream.next();
+
         Expression<?> url = parser.getExpressionParser().parseExpression();
         Expression<?> method = null;
+
         // if there's a method, parse it
         if (stream.current().test(Token.Type.NAME, "method")) {
         	stream.next();
         	method = parser.getExpressionParser().parseExpression();
         }
+
         stream.expect(Token.Type.EXECUTE_END);
 
         // parse body
@@ -52,23 +62,8 @@ public class AuthorizeUrlTokenParser implements TokenParser {
         return new AuthorizeUrlNode(lineNumber, url, method, body, elseBody);
     }
 
-    private StoppingCondition decideForFork = new StoppingCondition() {
-        @Override
-        public boolean evaluate(Token token) {
-            return token.test(Token.Type.NAME, FORK_TAG, END_TAG);
-        }
-    };
-
-    private StoppingCondition decideForEnd = new StoppingCondition() {
-        @Override
-        public boolean evaluate(Token token) {
-            return token.test(Token.Type.NAME, END_TAG);
-        }
-    };
-
     @Override
     public String getTag() {
         return START_TAG;
     }
-
 }
