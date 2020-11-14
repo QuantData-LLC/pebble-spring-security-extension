@@ -1,8 +1,11 @@
-/.git
-/.gradle
-/.settings
-/lib
+.git
+.idea
+bin/
+build/
+lib/
+target/
+
 .classpath
 .project
-/bin/
-/build
+.settings
+pebble-spring-security-extension.iml
